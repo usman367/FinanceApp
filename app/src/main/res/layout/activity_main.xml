@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    !--Adding an recyclerview for populating the list of inserted happy places from local database.-->
+    <!--            android:visibility="gone" e don't want to show it at the start-->
+    <!--    tools:visibility="gone" This is also not shown on the design on the right-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_transaction_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone" />
+
+    <!--This text view we will make it visible when the list size is 0 means no data available to display in list.-->
+    <!--            android:visibility="visible" This is shown at the start-->
+    <TextView
+        android:id="@+id/tv_no_records_available"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="No Transactions added"
+        android:textSize="16dp"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <!--    Creating the button on the bottom right-->
+    <!--    android:layout_gravity="bottom|end" Bottom right hand side-->
+    <!--    app:srcCompat="@drawable/ic_action_add_24dp File created by going to File -> New -> Vector Asset-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_action_add_24dp" />
+
+</FrameLayout>
