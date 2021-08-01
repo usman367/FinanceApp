@@ -2,6 +2,7 @@ package com.example.financeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -108,10 +109,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
                 Long addTransaction = dbHandler.addTransaction(transactionModel);
 
                 if(addTransaction > 0){
-                    Toast.makeText(this, "The transaction details are inserted successfully.", Toast.LENGTH_SHORT);
-
                     //Logging this to check if it works
                     Log.i("Database addition", "Database addition worked: ");
+
+                    //We do this so we can update the home screen once we have added a transaction
+                    setResult(Activity.RESULT_OK);
 
                     //Close this activity
                     finish();

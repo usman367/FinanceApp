@@ -6,15 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <!--    Creating the card view, in which we will display the information-->
+<!--            android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        The space between the start of the card and the end (The space on the right of thr card, and the left)-->
+<!--            android:minHeight="80dp" Added to make the card bigger-->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/white_color"
         android:foreground="?attr/selectableItemBackground"
-        app:cardCornerRadius="3dp"
+        app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,50 +28,86 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+
+<!--        For the whole linear layout we, want it to be displayed horizontally-->
+<!--        layout_height="match_parent" Takes up the maximum height-->
+<!--                    android:layout_marginStart="10dp" The space above the LL-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="2dp"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvAmount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/primary_text_color"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="Amount" />
 
-            <TextView
-                android:id="@+id/tvDescription"
+            <!--We want a LL to show info on the left-->
+<!--            android:layout_weight="1" Because we want both of the LL's to take up the same amount of width-->
+<!--            android:orientation="vertical" We want the info in this LL to be displayed vertically-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_color"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="Description" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_color"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="Date" />
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/primary_text_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Date" />
 
-            <TextView
-                android:id="@+id/tvMethod"
-                android:layout_marginBottom="5dp"
+                <TextView
+                    android:id="@+id/tvMethod"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/primary_text_color"
+                    android:textSize="16sp"
+                    tools:text="Method" />
+
+            </LinearLayout>
+
+
+<!--        To show info on the Right-->
+            <!--  android:layout_weight="1" Because we want both of the LL's to take up the same amount of width-->
+            <!--  android:orientation="vertical" We want the info in this LL to be displayed vertically-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_color"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="Method" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="end"
+                    android:textColor="#e61919"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Amount" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textColor="@color/primary_text_color"
+                    android:textSize="16sp"
+                    tools:text="Description" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -74,3 +116,5 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
