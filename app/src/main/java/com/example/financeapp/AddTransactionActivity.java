@@ -24,8 +24,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     //For the date picker dialog
     private int mYear, mMonth, mDay, mHour, mMinute;
 
-    private int DATABASE_VERSION = 1; // Database version
-    private String DATABASE_NAME = "FinanceAppDatabase"; // Database name
+    //Variable which will store the amount of money the user has spent
+    private int thisAmount = 0;
+
+    MainActivity mainActivity = new MainActivity();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +78,6 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         btn_save.setOnClickListener(this);
 
 
-
-
     }
 
 
@@ -108,6 +109,13 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
                 Long addTransaction = dbHandler.addTransaction(transactionModel);
 
+                //We get the value from the et_amount and add it to the totalAmount
+                //We first need to convert it into a string and then convert that into an integer
+                thisAmount += Integer.parseInt(et_amount.getText().toString());
+                mainActivity.setTotalAmount(thisAmount);
+                Log.i("TotalAmountActivity", String.valueOf(thisAmount));
+
+
                 if(addTransaction > 0){
                     //Logging this to check if it works
                     Log.i("Database addition", "Database addition worked: ");
@@ -132,6 +140,10 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
 
     }
+
+//    public int getTotalAmount(){
+//        return totalAmount;
+//    }
 
 
 }

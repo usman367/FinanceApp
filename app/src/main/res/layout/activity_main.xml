@@ -28,6 +28,18 @@
         android:visibility="visible"
         tools:visibility="visible" />
 
+
+<!--     For displaying the total amount-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_totalAmount"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Total Amount"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:visibility="visible"-->
+<!--        tools:visibility="visible"/>-->
+
     <!--    Creating the button on the bottom right-->
     <!--    android:layout_gravity="bottom|end" Bottom right hand side-->
     <!--    app:srcCompat="@drawable/ic_action_add_24dp File created by going to File -> New -> Vector Asset-->

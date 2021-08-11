@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
                                 }
 
                                 },
-        2500); //We want it to run the intent after 2 seconds
+        2000); //We want it to run the intent after 2 seconds
 
 
 

@@ -237,4 +237,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+
+    //This will delete the data in the database
+    // Creating a function to delete the existing transaction.
+    /**
+     * Function to delete the transaction.
+     */
+    public int deleteTransaction(TransactionModel2 transactionModel){
+        //Get the database
+        SQLiteDatabase db = getWritableDatabase();
+
+        // Deleting Row
+        //We pass the table name, the ID, and null
+        int success = db.delete(TABLE_FINANCE_APP, KEY_ID + "=" + transactionModel.id, null);
+
+        // Closing database connection
+        db.close();
+
+        return success;
+    }
+
+
 }

@@ -1,20 +1,25 @@
 package com.example.financeapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Variable which we use for updating the Main screen once the user has added a transaction
     int ADD_TRANSACTION_ACTIVITY_REQUEST_CODE = 1;
+
+    int totalAmount;
 
 
     @Override
@@ -58,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void getTransactionListFromLocalDB(){
         //Creating an object of the Database Handler
         DatabaseHandler dbHandler = new DatabaseHandler(this);
@@ -77,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Call this func from below which will set the RecyclerView
             setupTransactionRecyclerView(getTransactionList);
+
 
         }else{
             androidx.recyclerview.widget.RecyclerView rv_transaction_list = findViewById(R.id.rv_transaction_list);
@@ -102,7 +111,72 @@ public class MainActivity extends AppCompatActivity {
 
         //We set the adapter we want to use
         TransactionAdapter transactionAdapter = new TransactionAdapter(this, transactionList);
-         rv_transaction_list.setAdapter((RecyclerView.Adapter) transactionAdapter);
+        rv_transaction_list.setAdapter((RecyclerView.Adapter) transactionAdapter);
+
+
+
+        //Create an instance of our SwipeToDeleteCallback, we pass in our adapter
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new SwipeToDeleteCallback(transactionAdapter));
+        //We attach our itemTouchHelper to our RecyclerView
+        itemTouchHelper.attachToRecyclerView(rv_transaction_list);
+
+
+        // These two are for our other SwipeToDeleteCallback code that didn't work
+//        ItemTouchHelper.Callback deleteSwipeHandler = new SwipeToDeleteCallback(this) {
+//            @Override
+//            protected Object PorterDuffXfermode(PorterDuff.Mode clear) {
+//                return null;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                //RecyclerView.Adapter adapter = rv_transaction_list.getAdapter();
+//                //adapter.rem
+//
+//                  TransactionAdapter transactionAdapter = new TransactionAdapter(context, transactionList);
+//                  transactionAdapter.removeAt(viewHolder.getAdapterPosition());
+//                  getTransactionListFromLocalDB();
+//
+//            }
+//        };
+//
+//        ItemTouchHelper deleteItemTouchHelper = new ItemTouchHelper(deleteSwipeHandler);
+//        deleteItemTouchHelper.attachToRecyclerView(rv_transaction_list);
+
+
+//        SwipeToDeleteCallback deleteSwipeHandler = new SwipeToDeleteCallback() {
+//            @Override
+//            protected Object PorterDuffXfermode(PorterDuff.Mode clear) {
+//                return null;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//
+//                  RecyclerView.Adapter adapter = rv_transaction_list.getAdapter();
+//
+//
+//
+//            }
+//        }
+
+
+
+        //For our TotalAmount TextView:
+        //TextView tvTotalAmount = findViewById(R.id.tv_totalAmount);
+        //tvTotalAmount.setVisibility(View.VISIBLE);
+        //tvTotalAmount.setText(String.valueOf(totalAmount));
+
+        //rv_transaction_list.addView(tvTotalAmount);
+
+//        TextView newTextView = new TextView(this);
+//        newTextView.setLayoutParams(new RelativeLayout.LayoutParams
+//                ((int) LinearLayout.LayoutParams.WRAP_CONTENT,(int) LinearLayout.LayoutParams.WRAP_CONTENT));
+//        newTextView.setText(totalAmount);
+//        rv_transaction_list.addView(newTextView);
+
+
 
     }
 
@@ -128,6 +202,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+
+    public void setTotalAmount(int amount){
+        this.totalAmount = this.totalAmount + amount;
+
+        if(totalAmount >0){
+            Log.i("TotalAmountMain", "TotalAmount is successfully retrieved");
+            Log.i("TotalAmountMain", String.valueOf(totalAmount));
+        }else{
+            Log.i("TotalAmountMain", "Unsuccessful");
+        }
     }
 
 
